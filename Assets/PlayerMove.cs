@@ -1,13 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using System;
 public class PlayerMove : MonoBehaviour
 {
     public float velocity;
     public int id;
     Rigidbody2D rgb;
-
+    [SerializeField] LineRenderer Ayuda;
+    public Action LLegar;
     void Start()
     {
         rgb = GetComponent<Rigidbody2D>();
@@ -16,10 +17,11 @@ public class PlayerMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
     private void FixedUpdate()
     {
+
         switch (id)
         {
             case 1:
@@ -59,14 +61,24 @@ public class PlayerMove : MonoBehaviour
                 }
                 break;
         }
-        
+
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.tag == "Wall")
+        if (collision.gameObject.tag == "Wall")
         {
+            Debug.Log("asd" + id);
             rgb.velocity = Vector2.zero;
         }
+    } 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Meta")
+        {
+            Debug.Log("asd" + id);
+            LLegar?.Invoke();
+        }
     }
+
 }
