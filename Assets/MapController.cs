@@ -62,7 +62,7 @@ public class MapController : MonoBehaviour
     }
     IEnumerator Espera2()
     {
-        GameObject tmp = Instantiate(_muro2, _p1.transform.position, Quaternion.identity);
+        GameObject tmp = Instantiate(_muro2, _p2.transform.position, Quaternion.identity);
         tmp.SetActive(true);
         time2 = false;
         yield return new WaitForSecondsRealtime(7);
